@@ -1,0 +1,36 @@
+<div id="head-img">
+    <ion-toolbar>
+        <h3>YouInspire</h3>
+    </ion-toolbar>
+</div>
+
+<ion-content #contentscroll>
+    <div class="bg">
+        <ion-refresher slot="fixed" (ionRefresh)="loadNewData($event)">
+            <ion-refresher-content
+                    snapbackDuration="2000"
+                    pullingIcon="arrow-dropdown"
+                    pullingText="Pull to load new styles"
+                    refreshingSpinner="circles"
+                    refreshingText="Refreshing...">
+            </ion-refresher-content>
+        </ion-refresher>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button (click)="goToTop()"><ion-icon name="arrow-dropup-circle"></ion-icon></ion-fab-button>
+        </ion-fab>
+        <div class="container">
+            <ion-grid *ngFor="let card of myDataService.myData.cards">
+                <ion-row>
+                    <ion-col col-12 col-md-4 col-lg-3>
+                        <ion-card>
+                            <ion-img src="{{card.src}}"></ion-img>
+                            <ion-card-header>
+                                <p>Designer: {{card.designer}}</p>
+                            </ion-card-header>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+</ion-content>
